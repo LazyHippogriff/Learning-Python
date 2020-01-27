@@ -1,0 +1,11 @@
+1. Activate virtual environment.
+pipenv shell
+
+2. Create a new Django project called test with the following
+command:
+django-admin startproject test_project .
+
+3. Run webserver on localhost
+python manage.py runserver
+
+4. Check out the website by visiting http://127.0.0.1:8000/
