@@ -1,0 +1,9 @@
+# Install pip and pipenv
+sudo apt install python3-pip python3-dev
+pip3 install --user pipenv
+
+# Add pipenv (and other python scripts) to PATH
+echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
+
+Source: https://matthewbrown.io/2018/05/05/setting-up-my-python-workspace-2018/
