@@ -1,0 +1,6 @@
+Command Line
+$ cd ~/Desktop
+$ mkdir django
+$ cd django
+Now use Pipenv to install Django.
+pipenv --python 3.6.9 install django
