@@ -11,3 +11,4 @@ echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
 Source: https://matthewbrown.io/2018/05/05/setting-up-my-python-workspace-2018/
+Pipenv guide: https://realpython.com/pipenv-guide/
