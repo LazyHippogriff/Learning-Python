@@ -15,8 +15,18 @@ echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
 
+# Create a new project using Python 3.7, specifically:
+$ pipenv --python 3.7
+
+#installing packages
+pipenv install scipy numpy matplotlib pandas scikit-learn
+
+# starting virtual env
+pipenv shell
+
 Sources
 https://matthewbrown.io/2018/05/05/setting-up-my-python-workspace-2018/
 Pipenv guide: https://realpython.com/pipenv-guide/
 https://stackoverflow.com/questions/52951316/why-does-pipenv-need-pipfile-and-pipfile-lock
+https://superuser.com/q/1319047/860005 (in case of error while creating virtual env in ubuntu using python 3)
 Django for beginners by William S Vincent
