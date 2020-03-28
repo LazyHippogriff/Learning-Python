@@ -1,5 +1,9 @@
-Book referred:
-Django for beginners by William S Vincent
+
+
+pip/pip3 -> It lets us install and uninstall packages. Use this for installing pipenv and after that never use it again. 
+pipenv -> It has dependency manager and virtual environment support. It uses the Pipfile and Pipfile.lock files to achieve these goals. 
+Pipfile.lock is for computer while Pipfile is for humans.
+
 
 
 # Install pip and pipenv
@@ -10,5 +14,9 @@ pip3 install --user pipenv
 echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
-Source: https://matthewbrown.io/2018/05/05/setting-up-my-python-workspace-2018/
+
+Sources
+https://matthewbrown.io/2018/05/05/setting-up-my-python-workspace-2018/
 Pipenv guide: https://realpython.com/pipenv-guide/
+https://stackoverflow.com/questions/52951316/why-does-pipenv-need-pipfile-and-pipfile-lock
+Django for beginners by William S Vincent
