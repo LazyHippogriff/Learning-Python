@@ -24,6 +24,15 @@ pipenv install scipy numpy matplotlib pandas scikit-learn
 # starting virtual env
 pipenv shell
 
+# To add the current directory in git version control
+ git init
+ git add .
+ git commit -m "initial"
+
+# To add the current directory in bitbucket repository
+git remote add origin https://LazyHippogriff@bitbucket.org/LazyHippogriff/machinelearning.git
+git push -u origin master
+
 Sources
 https://matthewbrown.io/2018/05/05/setting-up-my-python-workspace-2018/
 Pipenv guide: https://realpython.com/pipenv-guide/
