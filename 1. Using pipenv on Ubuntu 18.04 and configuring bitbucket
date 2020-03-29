@@ -34,6 +34,14 @@ First create a repository in bitbucket(e.g. machinelearning).
 git remote add origin https://LazyHippogriff@bitbucket.org/LazyHippogriff/machinelearning.git
 git push -u origin master
 
+# To clone the bitbucket repository on some other system
+git clone https://LazyHippogriff@bitbucket.org/LazyHippogriff/machinelearning.git
+
+# To push some changes to the bitbucket repository.
+First commit the changes in your local directory by using "git add" and "git commit -m "message""
+Now use "git push" and give the password.
+
+
 Sources
 https://matthewbrown.io/2018/05/05/setting-up-my-python-workspace-2018/
 Pipenv guide: https://realpython.com/pipenv-guide/
