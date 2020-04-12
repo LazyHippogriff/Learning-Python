@@ -1,0 +1,14 @@
+
+soup.find_all("tagName", { "id" : "articlebody" })
+
+e.g.
+list = soup.findAll('div', attrs={'class':'fcontent'})
+print len(list)
+
+You shouldn't use jquery-tablesorter to select against in the response you get from requests because it is dynamically applied after the page loads. If you omit that, you should be good to go.
+
+tab = soup.find("table",{"class":"wikitable sortable"})
+Source: https://stackoverflow.com/questions/33766740/beautifulsoup-find-table-with-specified-class-on-wikipedia-page
+
+
+
