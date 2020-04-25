@@ -15,8 +15,8 @@ echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
 
-# Create a new project using Python 3.7, specifically:
-$ pipenv --python 3.7
+# Create a new project using Python 3, specifically:
+$ pipenv --python 3
 
 #installing packages
 pipenv install scipy numpy matplotlib pandas scikit-learn
