@@ -1,3 +1,104 @@
+* pipenv is no longer the recommended way to work in virtual environments. Follow the steps given in the link below:
+https://chriswarrick.com/blog/2018/09/04/python-virtual-environments/
+
+* Install virtualenv
+pip install --user virtualenv
+sudo apt-get install python3-venv
+
+* Create a virtual environment named env, use (depending on your tool of choice):
+$ python3 -m virtualenv env
+
+While the tools allow you to put your virtual environments anywhere in the system, it is not a desirable thing to do. There are two options:
+
+    Have one global place for them, like ~/virtualenvs.
+
+    Store them in each project’s directory, like ~/git/foobar/.venv.
+
+The first option comes with tools that make it easier, such as virtualenvwrapper. The second option is equally easy to work with, but comes with one caveat — you must add the venv directory to your .gitignore file, since you don’t want it in your repository (it’s binary bloat, and works only on your machine).
+
+And if you don’t want to install virtualenvwrapper but want to put virtualenvs in one global place, all you need is a short function in your shell configuration file:
+ export WORKON_HOME=~/virtualenvs
+ function workon {
+     source "$WORKON_HOME/$1/bin/activate"
+ }
+ 
+ 
+Use¶
+
+There are three ways of working with virtual environments interactively (in a shell):
+
+    activation (run source env/bin/activate on *nix; env\Scripts\activate on Windows) — it simplifies work and requires less typing, although it can sometimes fail to work properly.
+
+    executing env/bin/python (env\Scripts\python) and other scripts directly, as activation only changes $PATH and some helper variables — those variables are not mandatory for operation, running the correct python is, and that method is failsafe.
+
+    in subshells (IMO, it’s bad UX)
+
+Whichever method you use, you must remember that without doing any of these things, you will still be working with the system Python.
+
+For non-interactive work (eg. crontab entries, system services, etc.), activation and subshells are not viable solutions. In these cases, you must always use the full path to Python.
+
+Here are some usage examples (paths can be relative, of course):
+
+## *nix, activation ##
+$ source /path/to/env/bin/activate
+(env)$ pip install Django
+(env)$ deactivate
+
+## *nix, manual execution ##
+$ /path/to/env/bin/pip install Django
+
+## Windows, activation ##
+> C:\path\to\env\Scripts\activate
+(venv)> pip install Django
+(venv)> deactivate
+
+## Windows, manual execution ##
+> C:\path\to\env\Scripts\pip install Django
+
+The same principle applies to running Python itself, or any other script installed by a package. (With Django’s manage.py, calling it as ./manage.py requires activation, or you can run venv/bin/python manage.py.)
+Moving/renaming/copying environments?¶
+
+If you try to copy or rename a virtual environment, you will discover that the copied environment does not work. This is because a virtual environment is closely tied to both the Python it was created with, and the location it was created in. (The “relocatable” option is deprecated and generally fails to solve the problem.) 3
+
+However, this is very easy to fix. Instead of moving/copying, just create a new environment in the new location. Then, run pip freeze > requirements.txt in the old environment to create a list of packages installed in it. With that, you can just run pip install -r requirements.txt in the new environment to install packages from the saved list. (Of course, you can copy requirements.txt between machines. In many cases, it will just work; sometimes, you might need a few modifications to requirements.txt to remove OS-specific stuff.)
+
+$ oldenv/bin/pip freeze > requirements.txt
+$ python3 -m venv newenv
+$ newenv/bin/pip install -r requirements.txt
+(You may rm -rf oldenv now if you desire)
+
+Note that it might also be necessary to re-create your virtual environment after a Python upgrade, 4 so it might be handy to keep an up-to-date requirements.txt for your virtual environments (for many projects, it makes sense to put that in the repository).
+Frequently Asked Questions¶
+Do I need to install the virtualenv tool for each Python I want to use it with?¶
+
+In most cases, you can use virtualenv -p pythonX env to specify a different Python version, but with some Python version combinations, that approach might be unsuccessful.
+I’m the only user on my system. Do I still need virtual environments?¶
+
+Yes, you do. First, you will still need separation between projects, sooner or later. Moreover, if you were to install packages system-wide with pip, you might end up causing conflicts between packages installed by the system package manager and by pip. Running sudo pip is never a good idea because of this.
+I’m using Docker. Do I still need virtual environments?¶
+
+They are still a good idea in that case. They protect you against any bad system-wide Python packages your OS image might have (and one popular base OS is famous for those). They don’t introduce any extra overhead, while allowing to have a clean environment and the ability to re-create it outside of Docker (eg. for local development without Docker)
+What about Pipenv?¶
+
+Pipenv is a dependency management tool. It isn’t compatible with most workflows, and comes with many issues. In my opinion, it’s not worth using (Also, that thing about it being an officially recommended tool? Turns out it’s not true.)
+
+I also wrote a blog post detailing concerns with that tool, titled Pipenv: promises a lot, delivers very little.
+Footnotes¶
+
+1
+
+    The thing you’re actually installing is ensurepip. In general, Debian isn’t exactly friendly with Python packaging.
+2
+
+    On Windows, you must run python -m pip instead of pip if you want to upgrade the package manager itself.
+3
+
+    All script shebangs contain the direct path to the environment’s Python executable. Many things in the virtual environment are symlinks that point to the original Python.
+4
+
+    Definitely after a minor version (3.x → 3.y) upgrade, sometimes after a patch version upgrade (3.x.y → 3.x.z) as well.
+
+
 
 
 pip/pip3 -> It lets us install and uninstall packages. Use this for installing pipenv and after that never use it again. 
