@@ -1,0 +1,23 @@
+import sys
+from datetime import timedelta, datetime
+
+
+def daterange(start_date, end_date):
+    for n in range(int ((end_date - start_date).days)):
+        yield start_date + timedelta(n)
+
+
+if len(sys.argv)!=3:
+    print "python " + sys.argv[0] + " [startDate] [EndDate]"
+    print "e.g. python " +sys.argv[0] + " 17-02-2017 15-03-2017"
+    sys.exit()
+
+startDateString=sys.argv[1]
+EndDateString=sys.argv[2]
+
+my_string = '14-1-2019'
+start_date = datetime.strptime(startDateString, "%d-%m-%Y")
+end_date = datetime.strptime(EndDateString, "%d-%m-%Y")
+
+for single_date in daterange(start_date, end_date):
+    print(single_date.strftime("%d-%m-%Y"))
