@@ -1,3 +1,5 @@
+# Prog 1
+
 import sys
 from datetime import timedelta, datetime
 
@@ -21,3 +23,58 @@ end_date = datetime.strptime(EndDateString, "%d-%m-%Y")
 
 for single_date in daterange(start_date, end_date):
     print(single_date.strftime("%d-%m-%Y"))
+    
+    
+    
+######################### Prog 1 Ends ##########################
+
+
+# Prog 2
+import sys
+from datetime import timedelta, datetime, date
+
+start_date = date.today()
+end_date = date.today()
+
+def getEndDate(start_date, end_date):
+    if int((end_date - start_date).days) < 150:
+        return end_date
+    else:
+        return start_date + timedelta(150)
+
+#No argument is given.
+if len(sys.argv)==1:
+    print "Case 1: Getting dates from 1 month back"
+    start_date = (date.today()-timedelta(30))
+    end_date = (date.today()-timedelta(1))
+
+#Start year is given.
+elif len(sys.argv)==2:
+    print "Case 2: Starting Year is given"
+    input_date = "01-01-" + sys.argv[1]
+    start_date = datetime.strptime(input_date, "%d-%m-%Y")
+    end_date = (datetime.today()-timedelta(1))
+
+#Both dates are given.
+elif len(sys.argv)==3:
+    print "Case 3: Start and end date explicitly given"
+    start_date = datetime.strptime(sys.argv[1], "%d-%m-%Y")
+    end_date = datetime.strptime(sys.argv[2], "%d-%m-%Y")
+
+else:
+    print "Case 1: To get dates from 1 month back-->python " + sys.argv[0]
+    print "e.g. python " +sys.argv[0]
+    print "Case 2: To get dates starting from year-->python " + sys.argv[0] + " [Starting Year]"
+    print "e.g. python " +sys.argv[0] + " 2017"
+    print "Case 3: To explicity give start and end date-->python " + sys.argv[0] + " [startDate] [EndDate]"
+    print "e.g. python " +sys.argv[0] + " 17-02-2017 15-03-2017"
+    sys.exit()
+
+temp_end_date = start_date
+while (True):
+    print ("start date-->" + temp_end_date.strftime("%d-%m-%Y"))
+    temp_end_date = getEndDate(temp_end_date,end_date)
+    print ("end date-->" + temp_end_date.strftime("%d-%m-%Y"))
+    if temp_end_date == end_date:
+        break
+#################Prog 2 Ends##################################
