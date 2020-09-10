@@ -2,7 +2,12 @@
 https://chriswarrick.com/blog/2018/09/04/python-virtual-environments/
 
 * Install virtualenv
-pip install --user virtualenv
+for installing into Python2, use:
+python -m pip install virtualenv
+
+for installing into Python3, use:
+python3 -m pip install virtualenv
+
 sudo apt-get install python3-venv
 
 * Create a virtual environment named env, use (depending on your tool of choice):
@@ -14,9 +19,11 @@ While the tools allow you to put your virtual environments anywhere in the syste
 
     Store them in each project’s directory, like ~/git/foobar/.venv.
 
-The first option comes with tools that make it easier, such as virtualenvwrapper. The second option is equally easy to work with, but comes with one caveat — you must add the venv directory to your .gitignore file, since you don’t want it in your repository (it’s binary bloat, and works only on your machine).
+The first option comes with tools that make it easier, such as virtualenvwrapper. The second option is equally easy to work with, but comes with one caveat — 
+you must add the venv directory to your .gitignore file, since you don’t want it in your repository (it’s binary bloat, and works only on your machine).
 
-And if you don’t want to install virtualenvwrapper but want to put virtualenvs in one global place, all you need is a short function in your shell configuration file:
+And if you don’t want to install virtualenvwrapper but want to put virtualenvs in one global place, all you need is a short function in your shell configuration 
+file:
  export WORKON_HOME=~/virtualenvs
  function workon {
      source "$WORKON_HOME/$1/bin/activate"
@@ -27,15 +34,18 @@ Use¶
 
 There are three ways of working with virtual environments interactively (in a shell):
 
-    activation (run source env/bin/activate on *nix; env\Scripts\activate on Windows) — it simplifies work and requires less typing, although it can sometimes fail to work properly.
+    activation (run source env/bin/activate on *nix; env\Scripts\activate on Windows) — it simplifies work and requires less typing, although it can sometimes fail
+    to work properly.
 
-    executing env/bin/python (env\Scripts\python) and other scripts directly, as activation only changes $PATH and some helper variables — those variables are not mandatory for operation, running the correct python is, and that method is failsafe.
+    executing env/bin/python (env\Scripts\python) and other scripts directly, as activation only changes $PATH and some helper variables — those variables are not 
+    mandatory for operation, running the correct python is, and that method is failsafe.
 
     in subshells (IMO, it’s bad UX)
 
 Whichever method you use, you must remember that without doing any of these things, you will still be working with the system Python.
 
-For non-interactive work (eg. crontab entries, system services, etc.), activation and subshells are not viable solutions. In these cases, you must always use the full path to Python.
+For non-interactive work (eg. crontab entries, system services, etc.), activation and subshells are not viable solutions. In these cases, you must always use the 
+full path to Python.
 
 Here are some usage examples (paths can be relative, of course):
 
@@ -55,12 +65,16 @@ $ /path/to/env/bin/pip install Django
 ## Windows, manual execution ##
 > C:\path\to\env\Scripts\pip install Django
 
-The same principle applies to running Python itself, or any other script installed by a package. (With Django’s manage.py, calling it as ./manage.py requires activation, or you can run venv/bin/python manage.py.)
+The same principle applies to running Python itself, or any other script installed by a package. (With Django’s manage.py, calling it as ./manage.py requires 
+activation, or you can run venv/bin/python manage.py.)
 Moving/renaming/copying environments?¶
 
-If you try to copy or rename a virtual environment, you will discover that the copied environment does not work. This is because a virtual environment is closely tied to both the Python it was created with, and the location it was created in. (The “relocatable” option is deprecated and generally fails to solve the problem.) 3
+If you try to copy or rename a virtual environment, you will discover that the copied environment does not work. This is because a virtual environment is closely 
+tied to both the Python it was created with, and the location it was created in. (The “relocatable” option is deprecated and generally fails to solve the problem.)
 
-However, this is very easy to fix. Instead of moving/copying, just create a new environment in the new location. Then, run pip freeze > requirements.txt in the old environment to create a list of packages installed in it. With that, you can just run pip install -r requirements.txt in the new environment to install packages from the saved list. (Of course, you can copy requirements.txt between machines. In many cases, it will just work; sometimes, you might need a few modifications to requirements.txt to remove OS-specific stuff.)
+
+However, this is very easy to fix. Instead of moving/copying, just create a new environment in the new location. Then, run pip freeze > requirements.txt in the 
+old environment to create a list of packages installed in it. With that, you can just run pip install -r requirements.txt in the new environment to install packages from the saved list. (Of course, you can copy requirements.txt between machines. In many cases, it will just work; sometimes, you might need a few modifications to requirements.txt to remove OS-specific stuff.)
 
 $ oldenv/bin/pip freeze > requirements.txt
 $ python3 -m venv newenv
