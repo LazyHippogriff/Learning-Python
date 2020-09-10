@@ -1,4 +1,4 @@
-* pipenv is no longer the recommended way to work in virtual environments. Follow the steps given in the link below:
+*  pipenv is no longer the recommended way to work in virtual environments. Follow the steps given in the link below:
 https://chriswarrick.com/blog/2018/09/04/python-virtual-environments/
 
 * Install virtualenv
