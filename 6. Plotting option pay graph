@@ -1,10 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-premium = 10
-strikePrice = 50
-stockBuyPrice = 50
-
 def plotFigure(fa_xAxis, fa_yAxis, fa_xAxisTicks, fa_yAxisTicks, fileName):
     # Create the plot
     l_fig = plt.figure()
@@ -50,6 +46,7 @@ def shortCallProfit(fa_premium, fa_strikePrice, fa_spotPrice):
     l_term2 = fa_spotPrice - l_breakEven
     l_term3 = unitStep(fa_strikePrice,fa_spotPrice)
     return ((l_term1) - (l_term2 * l_term3))
+
 def plotShortCallProfit(fa_profit, fa_spotPrice, fa_strikePrice, fa_premium):
     l_breakEven = fa_strikePrice + fa_premium
     xTicks = []
@@ -104,25 +101,64 @@ def plotLongStockProfit(fa_profit, fa_spotPrice):
     plotFigure(fa_spotPrice,fa_profit,xTicks,yTicks,fileName)
 
 
-# Create the vectors X and Y
-spotPrice = np.array(range(100))
-profitLongCall = np.empty([spotPrice.size,],dtype=float)
-profitShortCall = np.empty([spotPrice.size,],dtype=float)
-profitLongPut = np.empty([spotPrice.size,],dtype=float)
-profitShortPut = np.empty([spotPrice.size,],dtype=float)
-profitLongStock = np.empty([spotPrice.size,],dtype=float)
-idx = 0
-for item in spotPrice:
-    profitLongCall[idx] = longCallProfit(premium,strikePrice,item)
-    profitShortCall[idx] = shortCallProfit(premium,strikePrice,item)
-    profitLongPut[idx] = longPutProfit(premium,strikePrice,item)
-    profitShortPut[idx] = shortPutProfit(premium,strikePrice,item)
-    profitLongStock[idx] = longStockProfit(stockBuyPrice,item)
+def plotGraph(optionType, position, premium, strikePrice):
+    # Create the vectors X and Y
+    spotPriceArray = np.array(range(2 * int(strikePrice)))
+    profitLongCall = np.empty([spotPriceArray.size,],dtype=float)
+    profitShortCall = np.empty([spotPriceArray.size,],dtype=float)
+    profitLongPut = np.empty([spotPriceArray.size,],dtype=float)
+    profitShortPut = np.empty([spotPriceArray.size,],dtype=float)
+    profitLongStock = np.empty([spotPriceArray.size,],dtype=float)
+    idx = 0
 
-    idx = idx + 1
+    if optionType == "pe":
 
-plotLongCallProfit(profitLongCall,spotPrice, strikePrice,premium)
-plotShortCallProfit(profitShortCall,spotPrice, strikePrice,premium)
-plotLongPutProfit(profitLongPut,spotPrice, strikePrice,premium)
-plotShortPutProfit(profitShortPut,spotPrice, strikePrice,premium)
-plotLongStockProfit(profitLongStock,spotPrice)
+        if position == "long":
+
+            for spotPrice in spotPriceArray:
+                profitLongPut[idx] = longPutProfit(float(premium),float(strikePrice),spotPrice)
+                idx = idx + 1
+
+            plotLongPutProfit(profitLongPut,spotPriceArray, float(strikePrice),float(premium))
+
+        elif position == "short":
+
+            for spotPrice in spotPriceArray:
+                profitShortPut[idx] = shortPutProfit(float(premium),float(strikePrice),spotPrice)
+                idx = idx + 1
+
+            plotShortPutProfit(profitShortPut,spotPriceArray, float(strikePrice),float(premium))
+
+        else:
+            print("Enter short or long as position type\n")
+
+
+    elif optionType == "ce":
+        if position == "long":
+
+            for spotPrice in spotPriceArray:
+                profitLongCall[idx] = longCallProfit(float(premium),float(strikePrice),spotPrice)
+                idx = idx + 1
+
+            plotLongCallProfit(profitLongCall,spotPriceArray, float(strikePrice),float(premium))
+
+        elif position == "short":
+
+            for spotPrice in spotPriceArray:
+                profitShortCall[idx] = shortCallProfit(float(premium),float(strikePrice),spotPrice)
+                idx = idx + 1
+
+            plotShortCallProfit(profitShortCall,spotPriceArray, float(strikePrice),float(premium))
+        else:
+            print("Enter short or long as position type\n")
+
+    else:
+        print("Enter pe or ce as option type\n")
+
+
+optionType = input("Enter option type(pe/ce): ")
+position = input("Enter entry type(long/short): ")
+premium = input("Enter option premium: ")
+strikePrice = input("Enter strike price of the option: ")
+plotGraph(optionType, position, premium, strikePrice)
+
