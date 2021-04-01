@@ -1,0 +1,46 @@
+import ipaddress
+import sys
+import math
+from ipaddress import IPv6Network
+from ipaddress import IPv4Network
+if len(sys.argv) < 2:
+    print("Please provide the parent IP Pool and the number of subnets required")
+    exit()
+def getSubnets(parentIpPool):
+    subnetList = []
+    for sn in parentIpPool.subnets():
+        subnetList.append(sn)
+    return subnetList
+def bigSubnets(parentIpPool, nIterations):
+    subnetList = []
+    if nIterations < 1:
+        return subnetList
+    for i in range(nIterations):
+        tempSubnetList = []
+        if i == 0:
+            tempSubnetList = getSubnets(parentIpPool)
+        for sn in subnetList:
+            tempSubnetList.extend(getSubnets(sn))
+        subnetList = tempSubnetList.copy()
+    return subnetList
+
+if __name__ == "__main__":
+    parentIpPool = ipaddress.ip_interface(sys.argv[1])
+    numOfSubnetsRequired = int(sys.argv[2])
+    if numOfSubnetsRequired < 2:
+        print("Number of required subnets should be greater than 1")
+        exit()
+    divideIterations = math.floor(math.log(numOfSubnetsRequired,2))
+    print("ParentIpPool-->",str(parentIpPool.network))
+    bigSubnetList = bigSubnets(parentIpPool.network,divideIterations)
+    smallSubnetList = []
+    if len(bigSubnetList) != numOfSubnetsRequired:
+        numSmallerSubnetsRequired = numOfSubnetsRequired - len(bigSubnetList)
+        for i in range(numSmallerSubnetsRequired):
+            smallSubnetList.extend(getSubnets(bigSubnetList.pop()))
+    print("\nBig subnets are given below:")
+    for sn in bigSubnetList:
+        print(sn)
+    print("\nSmall subnets are given below:")
+    for sn in smallSubnetList:
+        print(sn)
