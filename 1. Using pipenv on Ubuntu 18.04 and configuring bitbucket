@@ -169,6 +169,10 @@ Django for beginners by William S Vincent
 *****Jupyter Notebook******
 # Install a pip package in the current Jupyter kernel
 import sys
-!{sys.executable} -m pip install numpy
+!{sys.executable} -m pip install <package_name>
+
+Or using conda:
+import sys
+!conda install --yes --prefix {sys.prefix} <package_name>
 
 source: https://jakevdp.github.io/blog/2017/12/05/installing-python-packages-from-jupyter/
