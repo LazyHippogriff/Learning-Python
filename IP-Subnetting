@@ -3,9 +3,7 @@ import sys
 import math
 from ipaddress import IPv6Network
 from ipaddress import IPv4Network
-if len(sys.argv) < 2:
-    print("Please provide the parent IP Pool and the number of subnets required")
-    exit()
+
 def getSubnets(parentIpPool):
     subnetList = []
     for sn in parentIpPool.subnets():
@@ -25,6 +23,10 @@ def bigSubnets(parentIpPool, nIterations):
     return subnetList
 
 if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Please provide the parent IP Pool and the number of subnets required")
+        exit()
+        
     parentIpPool = ipaddress.ip_interface(sys.argv[1])
     numOfSubnetsRequired = int(sys.argv[2])
     if numOfSubnetsRequired < 2:
