@@ -1,0 +1,6 @@
+#To know the directory of python executable on windows:
+import os
+import sys
+os.path.dirname(sys.executable)
+
+
