@@ -1,0 +1,26 @@
+1. Open this below link as given by praveen.
+
+https://blog.quantinsti.com/install-ta-lib-python/
+
+2. Then find the section of Alternate methods and select the choice based on your machine. I selected windows PC
+
+3. Then next step is to open the below link (you will find this link in that site itself)
+
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta-lib
+
+4. In that link search for TA-LIB.  you will find the list of whl files under TA-LIB section.
+ I downloaded the below whl file as my computer is 64 bit
+
+TA_Lib‑0.4.20‑cp39‑cp39‑win_amd64.whl
+
+5. Once it is downloaded, it will be in your machine. From that folder, you can copy into any folder you prefer.
+
+6. Then in CMD prompt, go to that location folder which you stored the recent downloaded whl file.
+   I hope you know the commands (cd folder name.. so on)
+   Once you reached the exact folder location in command prompt, then type command
+   pip install TA_Lib‑0.4.20‑cp39‑cp39‑win_amd64.whl and enter
+
+7. You will receive successfully installed notification.
+
+8. To verify you can open python via CMD prompt or IDLE. Type import talib and enter. after sometime >>> next line tab will come.
+    Thats the end of installation.
