@@ -16,4 +16,7 @@ print(data["column_name"])
 #To select a column in the dataframe as a Pandas dataframe
 print(data[["column_name"]])
 
+#To select multiple columns(pass a list of strings) in the dataframe as a Pandas dataframe
+print(data[["column_1","column_2","column_3"]])
+
 
