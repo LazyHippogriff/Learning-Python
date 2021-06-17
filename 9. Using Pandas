@@ -7,4 +7,7 @@ data = pd.read_csv("filename.csv")
 #Check out dataframe info. It will show you the data type of each column along with the count of non-null values in each of them.
 data.info()
 
+#To get statistics of integer/float columns in the dataframe(min,max,std,avg etc.).
+print(data.describe())
+
 
