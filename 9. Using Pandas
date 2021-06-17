@@ -1,0 +1,10 @@
+#First import the pandas library
+import pandas as pd
+
+#Then read the entire csv file in a dataframe
+data = pd.read_csv("filename.csv")
+
+#Check out dataframe info. It will show you the data type of each column along with the count of non-null values in each of them.
+data.info()
+
+
