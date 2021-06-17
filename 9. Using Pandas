@@ -10,4 +10,7 @@ data.info()
 #To get statistics of integer/float columns in the dataframe(min,max,std,avg etc.).
 print(data.describe())
 
+#To select a column in the dataframe
+print(data["column_name"])
+
 
