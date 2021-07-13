@@ -1,0 +1,6 @@
+#By default, the python's standard print function will silently append a new line character at the end. Given below is a piece of code for disabling that.
+
+for i in range(5):
+    for j in range(i+1):
+        print("#",end="") #As you can see, we've passed a second argument. Now new line character will be replaced by empty string.
+    print("\n")
