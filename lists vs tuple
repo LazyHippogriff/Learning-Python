@@ -1,0 +1,45 @@
+#Tuple
+#Tuples are immutable i.e. you can't change the individual elements after you've defined them. You can't add/remove elements as well. There's no append() or extend() method for tuples
+
+l1 = "abc",4,"xyz",'c'
+print("type(l1)-->",type(l1))
+print("l1-->",l1)
+
+#output
+type(l1)--> <class 'tuple'>
+l1--> ('abc', 4, 'xyz', 'c')
+
+#List
+#Lists are mutable. You can append
+l2 = ["abc",'c',4,"xyz"]
+print("type(l2)-->",type(l2))
+print("l2-->",l2)
+
+#output
+type(l2)--> <class 'list'>
+l2--> ['abc', 'c', 4, 'xyz']
+
+#To define an empty tuple
+l1 = ()
+
+#To define an empty list
+l2 = []
+
+#To extend a list.
+# the extend() method takes an iterable such as list, tuple, string etc. and all the elements of iterable are added to the end of list. You can even use the same list as an input to the extend function.
+
+l2.extend(l1)
+print("l2-->",l2)
+
+#output
+l2--> ['abc', 'c', 4, 'xyz', 'abc', 4, 'xyz', 'c']
+
+name = "Vishal"
+l2.extend(name)
+
+#output
+l2--> ['abc', 'c', 4, 'xyz', 'abc', 4, 'xyz', 'c', 'V', 'i', 's', 'h', 'a', 'l']
+
+
+
+
