@@ -25,8 +25,10 @@ l1 = ()
 #To define an empty list
 l2 = []
 
+
+Most useful functions of list
+list.extend(iterable) --> the extend() method takes an iterable such as list, tuple, string etc. and all the elements of iterable are added to the end of list. You can even use the same list as an input to the extend function.
 #To extend a list.
-# the extend() method takes an iterable such as list, tuple, string etc. and all the elements of iterable are added to the end of list. You can even use the same list as an input to the extend function.
 
 l2.extend(l1)
 print("l2-->",l2)
@@ -34,12 +36,11 @@ print("l2-->",l2)
 #output
 l2--> ['abc', 'c', 4, 'xyz', 'abc', 4, 'xyz', 'c']
 
-name = "Vishal"
-l2.extend(name)
+list.clear() --> clears the content
+list.append() --> adds an element towards the end.
+list.copy() --> Make a backup of the list.
+# If you simply assign a list to another variable, it will become a copy by reference!
 
-#output
-l2--> ['abc', 'c', 4, 'xyz', 'abc', 4, 'xyz', 'c', 'V', 'i', 's', 'h', 'a', 'l']
-
-
-
+list.count(element) --> Counts the occurence of 'element' in the list.
+len(list) --> gives the length of the list.
 
