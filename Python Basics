@@ -1,0 +1,29 @@
+#important functions
+range(start,stop,step)
+This function returns a list having elements from start to stop with step increment. start is included, stop is not included.
+
+By default, start = 0 and step = 1, so you can use like below:
+range(stop)-->It will return a list [0,1,2,...stop-1]
+range(10,100)-->[10,11,12,...99]
+
+
+#using for loops
+#print first 10 whole numbers
+for i in range(10):
+  print(i)
+  
+#using while loops
+i=0
+while i<10:
+  print(i)
+  i+=1
+  
+#Booleans in python are True and False
+
+#Brackets are optional in while and if statements' condition
+
+#Just after while, you can have an else statement!!
+
+#Functions
+def functionName():
+  #Function Body
