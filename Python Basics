@@ -27,3 +27,54 @@ while i<10:
 #Functions
 def functionName():
   #Function Body
+  
+  
+  
+#datetime
+#To get current day and time both
+from datetime import datetime
+current_day_and_time = datetime.now() #This will only give you today's date,month and year along with hour,minute,second and microsecond
+
+
+
+#To get current day only
+current_day = datetime.now().day
+current_year = datetime.now().year
+current_month = datetime.now().month
+
+#epoch Time(time from 1-1-1970 00:00:00:0)
+    epochTime = datetime.now().timestamp()
+    print(epochTime)
+    
+    
+customDate = datetime(2020,8,8)
+customDate = datetime(2020,8,8,19,49,59) #2020-08-08 19:49:59
+
+#To get only current date,month and year
+from datetime import date
+currentDay = date.today()
+
+#To create a custom time
+from datetime import time
+t1 = time(21,4,29,9229) #21:04:29:9229
+
+#Using timedelta
+    from datetime import timedelta
+    delta1 = timedelta(weeks=4,days=5,seconds=4)
+    delta2 = timedelta(days=2,milliseconds=49)
+    delta3 = delta1-delta2
+    print(delta3) #31 days, 0:00:03.951000
+    
+#Converting datetime into string
+    current_day = datetime.now()
+    day_string = current_day.strftime("%Y-%m-%d (time-->%H:%M:%S)")
+    print("day_string-->",day_string) # day_string--> 2021-08-08 (time-->20:39:03)
+    
+#Converting string into datetime
+    date_text = "8 August, 2021"
+    date_object = datetime.strptime(date_text,"%d %B, %Y")
+    print("date_object-->",date_object) # date_object--> 2021-08-08 00:00:00
+
+
+
+
