@@ -30,7 +30,7 @@ def functionName():
   
   
   
-#datetime
+#datetime (https://www.programiz.com/python-programming/datetime)
 #To get current day and time both
 from datetime import datetime
 current_day_and_time = datetime.now() #This will only give you today's date,month and year along with hour,minute,second and microsecond
