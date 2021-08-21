@@ -74,6 +74,42 @@ t1 = time(21,4,29,9229) #21:04:29:9229
     date_text = "8 August, 2021"
     date_object = datetime.strptime(date_text,"%d %B, %Y")
     print("date_object-->",date_object) # date_object--> 2021-08-08 00:00:00
+    
+
+        
+        
+# Python's math module
+
+https://realpython.com/python-math-module/
+
+#ceil and floor functions in math library
+from math import ceil,floor,gcd
+print(floor(3.9)) #3
+print(ceil(3.9)) #4
+print(gcd(4,94)) #2
+print('The value of Log(625), base 5: ' + str(math.log(625, 5)))
+
+
+#Numpy module
+https://www.geeksforgeeks.org/python-numpy/
+#Creating a numpy 1d/2d array from a list/tuple
+import numpy as np
+arr = np.array([1,2,3,4])
+arr2 = np.array((1,2,3,4))
+print(arr) #[1 2 3 4]
+print(arr2)
+
+arr3= np.array([[1,2,],[3,4],[5,6]])
+print(arr3,type(arr3)) ''' [[1 2]
+ [3 4]
+ [5 6]] <class 'numpy.ndarray'>'''
+ 
+ 
+ #accessing elements in 3d numpy array
+arr3 = np.array([[[1, 2, 3], [4, 5, 6]]])
+for i in range(2):
+    for j in range(3):
+        print(arr3[0,i,j],"\n")
 
 
 
